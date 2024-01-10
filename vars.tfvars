@@ -1,0 +1,12 @@
+name_prefix = "dev-myapp"
+aws_region = "us-east-1"
+az_count = 2
+healthcheck_path = "/"
+min_capacity = 2
+max_capacity = 5
+container_port = 80
+alb_protocol = "HTTP"
+balanced_container_name = "myapp-api"
+app_image = "lvthillo/python-flask-docker:latest"
+fargate_cpu = 1024
+fargate_memory = 2048

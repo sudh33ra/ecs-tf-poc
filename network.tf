@@ -50,8 +50,7 @@ resource "aws_route" "internet_access" {
 # define NAT gateway for each private subnet
 resource "aws_eip" "nat_gateway_eip" {
   count      = "${var.az_count}"
-  vpc        = true
-  depends_on = ["aws_internet_gateway.internet_gateway"]
+  depends_on = [aws_internet_gateway.internet_gateway]
   tags = {
     Name = "${var.name_prefix}-nat-gateway-eip-${count.index}"
   }

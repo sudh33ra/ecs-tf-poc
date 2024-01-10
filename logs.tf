@@ -2,7 +2,7 @@
 resource "aws_cloudwatch_log_group" "log_group" {
   name = "/ecs/${var.name_prefix}"
 
-  tags {
+  tags = {
     Name = "tranque-api" #TODO check how this name matches the container/task/service/cluster/?
   }
 }

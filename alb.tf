@@ -1,7 +1,7 @@
 # define ALB
 resource "aws_alb" "alb" {
   name            = "${var.name_prefix}-alb"
-  subnets         = ["${aws_subnet.public_subnet.*.id}"]
+  subnets         = [for subnet in aws_subnet.public_subnet : subnet.id]
   security_groups = ["${aws_security_group.load_balancer_sg.id}"]
 }
 

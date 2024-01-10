@@ -15,14 +15,6 @@ variable "healthcheck_path" {
   default = "/"
 }
 
-variable "ecs_task_execution_role" {
-  default = null 
-}
-
-variable "ecs_autoscale_role" {
-  default = null 
-}
-
 variable "min_capacity" {
   default = "2"
 }
