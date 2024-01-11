@@ -24,3 +24,10 @@ terraform init --reconfigure
 terraform plan -var-file=vars.tfvars -out tfplan
 terraform apply "tfplan"
 ```
+
+once done, it'll print the URL that you can use to access the application.
+
+
+### Next steps
+
+- Link a valid domain to the given load balancer
