@@ -16,8 +16,8 @@ Explore the following files in this order:
 
 ### Run
 
-1. make sure aws configs are saved and the correct profile is given in provider.tf
-1. change the variables according to your needs in vars.tfvars
+1. make sure aws configs are saved and the correct profile is given in `provider.tf`
+1. change the variables according to your needs in `vars.tfvars`
 1. run 
 ```shell
 terraform init --reconfigure
