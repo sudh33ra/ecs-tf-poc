@@ -1,19 +1,20 @@
-# define Cluster
+# Define Cluster
 resource "aws_ecs_cluster" "ecs_cluster" {
   name = "${var.name_prefix}-cluster"
 }
 
-# define Task
+# Define Task
 data "template_file" "template_container_definitions" {
   template = "${file("container-definitions.json.tpl")}"
 
   vars = {
-    app_image      = "${var.app_image}"
-    fargate_cpu    = "${var.fargate_cpu}"
-    fargate_memory = "${var.fargate_memory}"
-    aws_region     = "${var.aws_region}"
-    app_port       = "${var.container_port}"
-    balanced_container_name      = "${var.balanced_container_name}"
+    app_image                 = "${var.app_image}"
+    fargate_cpu               = "${var.fargate_cpu}"
+    fargate_memory            = "${var.fargate_memory}"
+    aws_region                = "${var.aws_region}"
+    app_port                  = "${var.container_port}"
+    balanced_container_name   = "${var.balanced_container_name}"
+    name_prefix               = "${var.name_prefix}"
   }
 }
 
@@ -50,7 +51,8 @@ resource "aws_ecs_task_definition" "ecs_task" {
   memory                   = "${var.fargate_memory}"
   container_definitions    = "${data.template_file.template_container_definitions.rendered}"
 }
-# define Service
+
+# Define Service
 resource "aws_ecs_service" "ecs_service" {
   name            = "${var.name_prefix}-service"
   cluster         = "${aws_ecs_cluster.ecs_cluster.id}"
@@ -70,5 +72,6 @@ resource "aws_ecs_service" "ecs_service" {
     container_port   = "${var.container_port}"
   }
 
-  depends_on = [aws_alb_listener.load_balancer_listener]
+  depends_on = [aws_alb_listener.load_balancer_listener, aws_cloudwatch_log_group.log_group]
 }
+

@@ -10,6 +10,15 @@
         "containerPort": ${app_port},
         "hostPort": ${app_port}
       }
-    ]
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/${name_prefix}",
+        "awslogs-region": "${aws_region}",
+        "awslogs-stream-prefix": "${name_prefix}-log-stream"
+      }
+    }
   }
 ]
+

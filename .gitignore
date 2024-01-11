@@ -1,5 +1,6 @@
 *.tfbackup
 .terraform/
 *.tfstate
-.terraform.tfstate.lock.info
+.terraform.tfstate*
+terraform.tfstate.backup
 .terraform.lock.hcl
